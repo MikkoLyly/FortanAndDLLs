@@ -1,0 +1,19 @@
+all: utils.dll libutils.a main.exe prog.exe
+
+utils.dll: utils.c
+	gcc -std=c99 -shared -I. -O2 -o utils.dll utils.c -lrpcrt4
+
+libutils.a: utils.def
+	dlltool --input-def utils.def --output-lib libutils.a
+
+main.exe: main.c
+	gcc -std=c99 -static -I. -L. -O2 -o main.exe main.c -lutils 
+
+prog.exe: prog.f90
+	gfortran -cpp -static -L. -o prog.exe prog.f90 -lutils
+
+docs:
+	doxygen Doxyfile.windows
+	
+clean:
+	rm -f *.exe *.o *.dll *.a

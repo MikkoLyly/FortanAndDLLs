@@ -1,0 +1,16 @@
+all: libutils.so main.exe prog.exe
+
+libutils.so: utils.c
+	gcc -std=c99 -shared -fPIC -I. -O2 -o libutils.so utils.c -luuid
+
+main.exe: main.c
+	gcc -std=c99 -I. -L. -O2 -o main.exe main.c -lutils 
+
+prog.exe: prog.f90
+	gfortran -cpp -L. -o prog.exe prog.f90 -lutils
+
+docs:
+	doxygen Doxyfile.linux
+
+clean:
+	rm -f *.exe *.o *.so

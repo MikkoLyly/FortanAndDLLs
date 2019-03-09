@@ -1,0 +1,4 @@
+LIBRARY utils.dll
+EXPORTS
+utils_plus
+utils_createclsid
