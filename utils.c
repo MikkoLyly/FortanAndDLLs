@@ -2,7 +2,7 @@
  * @file utils.c
  * @author Mikko Lyly
  * @date 9 Mar 2019
- * @brief Libutils funtionality.
+ * @brief Implements libutils functionality.
  */
 
 #ifdef __WIN32__
@@ -26,7 +26,7 @@ int utils_plus(int *a, int *b) {
 
 /**
  * @brief Creates UUID v4.
- * @param clsid Pointer to a character buffer (len >= 37).
+ * @param clsid Pointer to a character buffer (length >= 37).
  * @return Replaces the contents of clsid with UUID v4.
  */
 void utils_createclsid(char *clsid) {
