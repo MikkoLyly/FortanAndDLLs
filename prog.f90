@@ -40,10 +40,10 @@ program prog
   ! Local variables
   !
   ! Note that character strings in fortran are defined with
-  ! attributes "len=N" and, by default, "dimension(1)". But
-  ! when passed to C-functions they are treated as arrays with
-  ! "len=1" and "dimension(N)". The transposition is possible
-  ! as the data is always stored in contiguous bytes in memory.
+  ! attributes "len=N" and "dimension(1)". But when passed to
+  ! C-functions they are treated as arrays with "len=1" and
+  ! "dimension(N)". The transposition is possible as the data
+  ! is always stored in contiguous bytes in memory.
   !-------------------------------------------------------------
   integer :: a, b, c
   character(kind=c_char, len=37) :: clsid
@@ -56,9 +56,9 @@ program prog
   c = plus(a, b)
   write(*, '(A, I1, A, I1, A, I1)') "addition: ", a, " + ", b, " = ", c
 
-  !----------------------------------------
-  ! Test a simple subroutine from libutils
-  !----------------------------------------
+  !----------------------------------------------
+  ! Test another simple subroutine from libutils
+  !----------------------------------------------
   clsid = ''
   call createclsid(clsid)
   write(*, '(A, A)') "uuid: ", clsid
