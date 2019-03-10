@@ -34,10 +34,10 @@ program prog
   end interface
 
   interface
-     subroutine createclsid(clsid) bind(C, name="utils_createclsid")
+     subroutine createclsid(ch) bind(C, name="utils_createclsid")
        use, intrinsic :: iso_c_binding
        implicit none
-       character(kind=c_char), dimension(*) :: clsid
+       character(kind=c_char), dimension(*) :: ch
      end subroutine createclsid
   end interface
 
