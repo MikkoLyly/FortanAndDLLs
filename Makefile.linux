@@ -6,8 +6,11 @@ libutils.so: utils.c
 main.exe: main.c
 	gcc -std=c99 -I. -L. -O2 -o main.exe main.c -lutils 
 
-prog.exe: prog.f90
-	gfortran -cpp -L. -o prog.exe prog.f90 -lutils
+prog.exe: iso_vst.o prog.f90
+	gfortran -cpp -L. -o prog.exe iso_vst.o prog.f90 -lutils
+
+iso_vst.o: iso_vst.f90
+	gfortran -c -O2 -o iso_vst.o iso_vst.f90
 
 docs:
 	doxygen Doxyfile.linux

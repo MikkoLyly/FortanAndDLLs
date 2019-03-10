@@ -16,30 +16,30 @@
 
 /**
  * @brief Addition of integers.
- * @param a Pointer to an integer.
- * @param b Pointer to an integer.
+ * @param a An integer.
+ * @param b Another integer.
  * @return Sum of a and b.
  */
-int utils_plus(int *a, int *b) {
-  return *a + *b;
+int utils_plus(int a, int b) {
+  return a + b;
 }
 
 /**
  * @brief Creates UUID v4.
- * @param clsid Pointer to a character buffer (length >= 37).
- * @return Replaces the contents of clsid with UUID v4.
+ * @param clsid Pointer to a character buffer (length must be 37 or greater).
+ * @return Replaces the first 37 characters of clsid with a new UUID v4.
  */
-void utils_createclsid(char *clsid) {
+void utils_createclsid(char *ch) {
 #ifdef __WIN32__
   UUID uuid;
   char *str;
   UuidCreate(&uuid);
   UuidToStringA(&uuid, (RPC_CSTR *)&str);
-  memcpy(clsid, str, 37);
+  memcpy(ch, str, 37);
   RpcStringFreeA((RPC_CSTR *)&str);
 #else
   uuid_t uuid;
   uuid_generate_random(uuid);
-  uuid_unparse(uuid, clsid);
+  uuid_unparse(uuid, ch);
 #endif
 }

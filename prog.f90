@@ -6,11 +6,16 @@
 !-----------------------------------------------------------------------------
 
 program prog
-  !-------------------------------------------------------
-  ! Use ISO C-BINGINGS for interoperability with libutils
-  !-------------------------------------------------------
+  !------------------------------------------------------
+  ! Use ISO C BINGING for interoperability with libutils
+  !------------------------------------------------------
   use, intrinsic :: iso_c_binding
 
+  !------------------------
+  ! Use ISO VARYING STRING
+  !------------------------
+  use iso_varying_string
+  
   !----------------
   ! Assume nothing
   !----------------
@@ -24,7 +29,7 @@ program prog
        use, intrinsic :: iso_c_binding     
        implicit none
        integer :: plus
-       integer :: a, b
+       integer, value :: a, b
      end function plus
   end interface
 
@@ -40,13 +45,15 @@ program prog
   ! Local variables
   !
   ! Note that character strings in fortran are defined with
-  ! attributes "len=N" and "dimension(1)". But when passed to
+  ! attributes "len=*" and "dimension(1)". But when passed to
   ! C-functions they are treated as arrays with "len=1" and
-  ! "dimension(N)". The transposition is possible as the data
+  ! "dimension(*)". The transposition is possible as the data
   ! is always stored in contiguous bytes in memory.
   !-------------------------------------------------------------
   integer :: a, b, c
-  character(kind=c_char, len=37) :: clsid
+  character(kind=c_char, len=37) :: ch
+  character(kind=c_char, len=:), allocatable :: tmp
+  type(varying_string) :: vs
 
   !--------------------------------------
   ! Test a simple function from libutils
@@ -59,8 +66,17 @@ program prog
   !----------------------------------------------
   ! Test another simple subroutine from libutils
   !----------------------------------------------
-  clsid = ''
-  call createclsid(clsid)
-  write(*, '(A, A)') "uuid: ", clsid
+  ch = ""
+  call createclsid(ch)
+  write(*, '(A, A)') "uuid1: ", trim(ch)
+
+  !----------------------------------
+  ! Do the same with varying strings
+  !----------------------------------
+  allocate(character(37) :: tmp)
+  call createclsid(tmp)
+  vs = trim(tmp)
+  deallocate(tmp)
+  write(*, '(A, A)') "uuid2: ", char(vs)
   
 end program prog

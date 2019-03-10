@@ -15,13 +15,13 @@ int main()
   //--------------------------------------
   int a = 1;
   int b = 2;
-  int c = utils_plus(&a, &b);
+  int c = utils_plus(a, b);
   printf("addition: %d + %d = %d\n", a, b, c);
 
   //--------------------------------------------  
   // Test another simple function from libutils
   //--------------------------------------------
-  char clsid[37];
-  utils_createclsid(clsid);
-  printf("uuid: %s\n", clsid);
+  char ch[37];
+  utils_createclsid(ch);
+  printf("uuid: %s\n", ch);
 }

@@ -8,7 +8,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-int utils_plus(int *a, int *b);
-void utils_createclsid(char *clsid);
+int utils_plus(int a, int b);
+void utils_createclsid(char *ch);
 
 #endif // UTILS_H
