@@ -25,3 +25,4 @@ int main()
   utils_createclsid(ch);
   printf("uuid: %s\n", ch);
 }
+

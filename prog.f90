@@ -80,3 +80,4 @@ program prog
   write(*, '(A, A)') "uuid2: ", char(vs)
   
 end program prog
+

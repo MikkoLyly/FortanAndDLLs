@@ -16,4 +16,5 @@ docs:
 	doxygen Doxyfile.linux
 
 clean:
-	rm -f *.exe *.o *.so
+	rm -f *.exe *.o *.so *.mod
+

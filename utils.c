@@ -43,3 +43,4 @@ void utils_createclsid(char *ch) {
   uuid_unparse(uuid, ch);
 #endif
 }
+

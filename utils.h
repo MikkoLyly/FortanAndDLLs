@@ -12,3 +12,4 @@ int utils_plus(int a, int b);
 void utils_createclsid(char *ch);
 
 #endif // UTILS_H
+

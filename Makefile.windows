@@ -20,3 +20,4 @@ docs:
 
 clean:
 	rm -f *.exe *.o *.dll *.a *.mod
+
