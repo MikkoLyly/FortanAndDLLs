@@ -28,8 +28,8 @@ program prog
      function plus(a, b) bind(C, name="utils_plus")
        use, intrinsic :: iso_c_binding     
        implicit none
-       integer :: plus
-       integer, value :: a, b
+       integer(kind=c_int) :: plus
+       integer(kind=c_int), value :: a, b
      end function plus
   end interface
 
