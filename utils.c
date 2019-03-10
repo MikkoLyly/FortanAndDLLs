@@ -27,7 +27,7 @@ int utils_plus(int a, int b) {
 /**
  * @brief Creates UUID v4.
  * @param clsid Pointer to a character buffer (length must be 37 or greater).
- * @return Replaces the first 37 characters of clsid with a new UUID v4.
+ * @return Replaces the first 37 characters of ch with the generated UUID v4.
  */
 void utils_createclsid(char *ch) {
 #ifdef __WIN32__
@@ -43,4 +43,3 @@ void utils_createclsid(char *ch) {
   uuid_unparse(uuid, ch);
 #endif
 }
-
