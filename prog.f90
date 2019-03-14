@@ -11,11 +11,6 @@ program prog
   !------------------------------------------------------
   use, intrinsic :: iso_c_binding
 
-  !------------------------
-  ! Use ISO VARYING STRING
-  !------------------------
-  use iso_varying_string
-  
   !----------------
   ! Assume nothing
   !----------------
@@ -52,8 +47,7 @@ program prog
   !-------------------------------------------------------------
   integer :: a, b, c
   character(kind=c_char, len=37) :: ch
-  character(kind=c_char, len=:), allocatable :: tmp
-  type(varying_string) :: vs
+  character(kind=c_char, len=:), allocatable :: vs
 
   !--------------------------------------
   ! Test a simple function from libutils
@@ -68,16 +62,14 @@ program prog
   !----------------------------------------------
   ch = ""
   call createclsid(ch)
-  write(*, '(A, A)') "uuid1: ", trim(ch)
+  write(*, '(A, A)') "uuid1: ", ch
 
-  !----------------------------------
-  ! Do the same with varying strings
-  !----------------------------------
-  allocate(character(37) :: tmp)
-  call createclsid(tmp)
-  vs = trim(tmp)
-  deallocate(tmp)
-  write(*, '(A, A)') "uuid2: ", char(vs)
+  !--------------------------------------
+  ! Do the same with allocatable strings
+  !--------------------------------------
+  allocate(character(37) :: vs)
+  call createclsid(vs)
+  write(*, '(A, A)') "uuid2: ", vs
   
 end program prog
 
